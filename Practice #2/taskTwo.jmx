@@ -72,7 +72,7 @@
           </elementProp>
           <elementProp name="NUMBER_OF_PREDEFINED_DATES" elementType="Argument">
             <stringProp name="Argument.name">NUMBER_OF_PREDEFINED_DATES</stringProp>
-            <stringProp name="Argument.value">10</stringProp>
+            <stringProp name="Argument.value">100</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="START_DATE" elementType="Argument">

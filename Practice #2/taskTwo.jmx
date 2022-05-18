@@ -327,12 +327,12 @@
         <hashTree>
           <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
             <boolProp name="LoopController.continue_forever">true</boolProp>
-            <stringProp name="LoopController.loops">${__groovy((vars.get(&quot;NUMBER_OF_POSTS&quot;).toInteger()).intdiv(${NUMBER_OF_USERS}),)}</stringProp>
+            <stringProp name="LoopController.loops">${__groovy(((vars.get(&quot;NUMBER_OF_POSTS&quot;).toInteger()).intdiv(${NUMBER_OF_USERS}))+1,)}</stringProp>
           </LoopController>
           <hashTree>
             <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
               <stringProp name="CounterConfig.start">1</stringProp>
-              <stringProp name="CounterConfig.end"></stringProp>
+              <stringProp name="CounterConfig.end">${NUMBER_OF_POSTS}</stringProp>
               <stringProp name="CounterConfig.incr">1</stringProp>
               <stringProp name="CounterConfig.name">ITERATION</stringProp>
               <stringProp name="CounterConfig.format"></stringProp>

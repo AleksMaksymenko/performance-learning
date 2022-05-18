@@ -1393,7 +1393,7 @@ vars.put(&quot;RANDOM_POST_PATH&quot;,random_uri.getPath().toString())</stringPr
             </GaussianRandomTimer>
             <hashTree/>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Leave Comment or Not" enabled="false">
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Leave Comment or Not" enabled="true">
             <stringProp name="IfController.condition">${__javaScript(Math.round(Math.random())==1 ? &quot;true&quot; : &quot;false&quot;;)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>

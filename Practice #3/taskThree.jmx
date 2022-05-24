@@ -153,12 +153,6 @@
             </RegexExtractor>
             <hashTree/>
           </hashTree>
-          <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
-            <boolProp name="displayJMeterProperties">false</boolProp>
-            <boolProp name="displayJMeterVariables">true</boolProp>
-            <boolProp name="displaySystemProperties">false</boolProp>
-          </DebugSampler>
-          <hashTree/>
         </hashTree>
         <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller for Anonymous Script" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
@@ -244,7 +238,7 @@
                   <stringProp name="RegexExtractor.refname">RANDOM_PAGE_PATH</stringProp>
                   <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\?page=\d+)&quot;&gt;</stringProp>
                   <stringProp name="RegexExtractor.template">$1$</stringProp>
-                  <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                  <stringProp name="RegexExtractor.default">/blog</stringProp>
                   <stringProp name="RegexExtractor.match_number">0</stringProp>
                 </RegexExtractor>
                 <hashTree/>
@@ -328,10 +322,6 @@
               <hashTree>
                 <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                   <collectionProp name="HeaderManager.headers">
-                    <elementProp name="Referer" elementType="Header">
-                      <stringProp name="Header.name">Referer</stringProp>
-                      <stringProp name="Header.value">${PROTOCOL}://${DOMAIN}/blog/</stringProp>
-                    </elementProp>
                     <elementProp name="Accept-Language" elementType="Header">
                       <stringProp name="Header.name">Accept-Language</stringProp>
                       <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
@@ -360,7 +350,7 @@
                   <stringProp name="RegexExtractor.refname">RANDOM_PAGE_PATH</stringProp>
                   <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\/\d{4}\/\d{2}\/\d{2}\/default\?page=\d+)&quot;&gt;</stringProp>
                   <stringProp name="RegexExtractor.template">$1$</stringProp>
-                  <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                  <stringProp name="RegexExtractor.default">/blog/${RANDOM_DATE}/default</stringProp>
                   <stringProp name="RegexExtractor.match_number">0</stringProp>
                 </RegexExtractor>
                 <hashTree/>
@@ -444,10 +434,6 @@
               <hashTree>
                 <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                   <collectionProp name="HeaderManager.headers">
-                    <elementProp name="Referer" elementType="Header">
-                      <stringProp name="Header.name">Referer</stringProp>
-                      <stringProp name="Header.value">${PROTOCOL}://${DOMAIN}/blog/</stringProp>
-                    </elementProp>
                     <elementProp name="Accept-Language" elementType="Header">
                       <stringProp name="Header.name">Accept-Language</stringProp>
                       <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
@@ -476,7 +462,7 @@
                   <stringProp name="RegexExtractor.refname">RANDOM_PAGE_PATH</stringProp>
                   <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\/\d{4}\/\d{2}\/\d{2}\/default\?page=\d+)&quot;&gt;</stringProp>
                   <stringProp name="RegexExtractor.template">$1$</stringProp>
-                  <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                  <stringProp name="RegexExtractor.default">/blog/${PREDEFINED_DATE}/default</stringProp>
                   <stringProp name="RegexExtractor.match_number">0</stringProp>
                 </RegexExtractor>
                 <hashTree/>
@@ -568,10 +554,6 @@
               <hashTree>
                 <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                   <collectionProp name="HeaderManager.headers">
-                    <elementProp name="Referer" elementType="Header">
-                      <stringProp name="Header.name">Referer</stringProp>
-                      <stringProp name="Header.value">${PROTOCOL}://${DOMAIN}/blog/</stringProp>
-                    </elementProp>
                     <elementProp name="Accept-Language" elementType="Header">
                       <stringProp name="Header.name">Accept-Language</stringProp>
                       <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
@@ -682,10 +664,6 @@ vars.put(&quot;RANDOM_POST_PATH&quot;,random_uri.getPath().toString())</stringPr
               <hashTree>
                 <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                   <collectionProp name="HeaderManager.headers">
-                    <elementProp name="Referer" elementType="Header">
-                      <stringProp name="Header.name">Referer</stringProp>
-                      <stringProp name="Header.value">${PROTOCOL}://${DOMAIN}/blog/</stringProp>
-                    </elementProp>
                     <elementProp name="Accept-Language" elementType="Header">
                       <stringProp name="Header.name">Accept-Language</stringProp>
                       <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
@@ -780,10 +758,6 @@ vars.put(&quot;RANDOM_POST_PATH&quot;,random_uri.getPath().toString())</stringPr
               <hashTree>
                 <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                   <collectionProp name="HeaderManager.headers">
-                    <elementProp name="Referer" elementType="Header">
-                      <stringProp name="Header.name">Referer</stringProp>
-                      <stringProp name="Header.value">${PROTOCOL}://${DOMAIN}/blog</stringProp>
-                    </elementProp>
                     <elementProp name="Accept-Language" elementType="Header">
                       <stringProp name="Header.name">Accept-Language</stringProp>
                       <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
@@ -1176,10 +1150,6 @@ vars.put(&quot;RANDOM_POST_PATH&quot;,random_uri.getPath().toString())</stringPr
           <hashTree>
             <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
               <collectionProp name="HeaderManager.headers">
-                <elementProp name="Referer" elementType="Header">
-                  <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">${PROTOCOL}://${DOMAIN}/blog/</stringProp>
-                </elementProp>
                 <elementProp name="Accept-Language" elementType="Header">
                   <stringProp name="Header.name">Accept-Language</stringProp>
                   <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
@@ -1262,10 +1232,6 @@ vars.put(&quot;RANDOM_POST_PATH&quot;,random_uri.getPath().toString())</stringPr
             <hashTree>
               <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
-                  <elementProp name="Referer" elementType="Header">
-                    <stringProp name="Header.name">Referer</stringProp>
-                    <stringProp name="Header.value">${PROTOCOL}://${DOMAIN}/blog/search?q=Post-3</stringProp>
-                  </elementProp>
                   <elementProp name="Accept-Language" elementType="Header">
                     <stringProp name="Header.name">Accept-Language</stringProp>
                     <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
@@ -1360,10 +1326,6 @@ vars.put(&quot;RANDOM_POST_PATH&quot;,random_uri.getPath().toString())</stringPr
             <hashTree>
               <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
-                  <elementProp name="Referer" elementType="Header">
-                    <stringProp name="Header.name">Referer</stringProp>
-                    <stringProp name="Header.value">${PROTOCOL}://${DOMAIN}/blog/search?q=Post-3</stringProp>
-                  </elementProp>
                   <elementProp name="Accept-Language" elementType="Header">
                     <stringProp name="Header.name">Accept-Language</stringProp>
                     <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
@@ -1562,10 +1524,6 @@ vars.put(&quot;RANDOM_POST_PATH&quot;,random_uri.getPath().toString())</stringPr
             <hashTree>
               <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
                 <collectionProp name="HeaderManager.headers">
-                  <elementProp name="Referer" elementType="Header">
-                    <stringProp name="Header.name">Referer</stringProp>
-                    <stringProp name="Header.value">${PROTOCOL}://${DOMAIN}/blog/post/post-92</stringProp>
-                  </elementProp>
                   <elementProp name="Accept-Language" elementType="Header">
                     <stringProp name="Header.name">Accept-Language</stringProp>
                     <stringProp name="Header.value">en-US,en;q=0.5</stringProp>

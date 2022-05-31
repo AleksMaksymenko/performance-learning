@@ -74,7 +74,7 @@
           </elementProp>
           <elementProp name="RUMPUP_TIME" elementType="Argument">
             <stringProp name="Argument.name">RUMPUP_TIME</stringProp>
-            <stringProp name="Argument.value">${__P(RUMPUP, 1)}</stringProp>
+            <stringProp name="Argument.value">${__P(RUMPUP, 30)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="LOOP_COUNT" elementType="Argument">
@@ -84,7 +84,7 @@
           </elementProp>
           <elementProp name="DURATION" elementType="Argument">
             <stringProp name="Argument.name">DURATION</stringProp>
-            <stringProp name="Argument.value">${__P(DURATION, 300)}</stringProp>
+            <stringProp name="Argument.value">${__P(DURATION, 600)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="ADMIN_LOOPS" elementType="Argument">
@@ -1085,11 +1085,11 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">${LOOP_COUNT}</stringProp>
+          <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">${NUMBER_OF_USERS}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${RUMPUP_TIME}</stringProp>
-        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.duration">${DURATION}</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>

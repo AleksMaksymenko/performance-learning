@@ -92,6 +92,11 @@
             <stringProp name="Argument.value">${__P(ADMIN_LOOPS, 10)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="MAIN_SCRIPT_START_DELAY" elementType="Argument">
+            <stringProp name="Argument.name">MAIN_SCRIPT_START_DELAY</stringProp>
+            <stringProp name="Argument.value">${__P(MAIN_SCRIPT_START_DELAY, 30)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
@@ -133,7 +138,10 @@
           </GaussianRandomTimer>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Login" enabled="true"/>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Warmup Login" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">true</boolProp>
+        </TransactionController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get necessary parameters for Login" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
@@ -340,7 +348,7 @@
           </GaussianRandomTimer>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open Home Page" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Warmup Open Home Page" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -397,7 +405,7 @@
           </GaussianRandomTimer>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Search by Name" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Warmup Search by Name" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="q" elementType="HTTPArgument">
@@ -462,7 +470,7 @@
           </GaussianRandomTimer>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open Large Calendar" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Warmup Open Large Calendar" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -519,7 +527,7 @@
           </GaussianRandomTimer>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open Contacts" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Warmup Open Contacts" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -576,7 +584,10 @@
           </GaussianRandomTimer>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Open Admin Page" enabled="true"/>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Warmup Open Admin Page" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">true</boolProp>
+        </TransactionController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/blog/admin/-30" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
@@ -1015,7 +1026,126 @@
           </GaussianRandomTimer>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Log Out" enabled="true"/>
+        <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="Delete all User_**" enabled="true">
+          <stringProp name="WhileController.condition">${__jexl3(&quot;${DELETE_USER_NUMBER}&quot;!=&quot;NOT_FOUND&quot;,)}</stringProp>
+        </WhileController>
+        <hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
+            <stringProp name="IfController.condition">${__jexl3(&quot;${DELETE_USER_NUMBER}&quot;!=&quot;NOT_FOUND&quot;,)}</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+            <boolProp name="IfController.useExpression">true</boolProp>
+          </IfController>
+          <hashTree>
+            <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Delete User" enabled="true">
+              <collectionProp name="ModuleController.node_path">
+                <stringProp name="764597751">Test Plan</stringProp>
+                <stringProp name="764597751">Test Plan</stringProp>
+                <stringProp name="170071582">Test Fragment</stringProp>
+                <stringProp name="486950176">Delete User</stringProp>
+              </collectionProp>
+            </ModuleController>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET Users List" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="filter" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">filter</stringProp>
+                  <stringProp name="Argument.value">1+%3D%3D+1</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="order" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">order</stringProp>
+                  <stringProp name="Argument.value">UserName</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="skip" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">skip</stringProp>
+                  <stringProp name="Argument.value">0</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="take" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">take</stringProp>
+                  <stringProp name="Argument.value">0</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/blog/api/users</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="Accept-Language" elementType="Header">
+                  <stringProp name="Header.name">Accept-Language</stringProp>
+                  <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
+                </elementProp>
+                <elementProp name="Accept-Encoding" elementType="Header">
+                  <stringProp name="Header.name">Accept-Encoding</stringProp>
+                  <stringProp name="Header.value">gzip, deflate</stringProp>
+                </elementProp>
+                <elementProp name="User-Agent" elementType="Header">
+                  <stringProp name="Header.name">User-Agent</stringProp>
+                  <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0</stringProp>
+                </elementProp>
+                <elementProp name="Accept" elementType="Header">
+                  <stringProp name="Header.name">Accept</stringProp>
+                  <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                </elementProp>
+                <elementProp name="x-blog-instance" elementType="Header">
+                  <stringProp name="Header.name">x-blog-instance</stringProp>
+                  <stringProp name="Header.value">96d5b379-7e1d-4dac-a6ba-1e50db561b04</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="DELETE_USER_NUMBER Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">DELETE_USER_NUMBER</stringProp>
+              <stringProp name="RegexExtractor.regex">&quot;UserName&quot;:&quot;User_(\d{2,4})&quot;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+              <stringProp name="RegexExtractor.match_number">0</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+          <intProp name="ActionProcessor.action">1</intProp>
+          <intProp name="ActionProcessor.target">0</intProp>
+          <stringProp name="ActionProcessor.duration">0</stringProp>
+        </TestAction>
+        <hashTree>
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
+            <stringProp name="ConstantTimer.delay">2500</stringProp>
+            <stringProp name="RandomTimer.range">500</stringProp>
+          </GaussianRandomTimer>
+          <hashTree/>
+        </hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Warmup Log Out" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">true</boolProp>
+        </TransactionController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/blog/Account/login.aspx-57" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
@@ -1071,15 +1201,6 @@
             <hashTree/>
           </hashTree>
         </hashTree>
-        <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Ignore Warmup in reports" enabled="true">
-          <stringProp name="scriptLanguage">groovy</stringProp>
-          <stringProp name="parameters"></stringProp>
-          <stringProp name="filename"></stringProp>
-          <stringProp name="cacheKey">true</stringProp>
-          <stringProp name="script">prev.setIgnore()
-</stringProp>
-        </JSR223PostProcessor>
-        <hashTree/>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Main Script" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
@@ -1091,10 +1212,19 @@
         <stringProp name="ThreadGroup.ramp_time">${RUMPUP_TIME}</stringProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
         <stringProp name="ThreadGroup.duration">${DURATION}</stringProp>
-        <stringProp name="ThreadGroup.delay"></stringProp>
+        <stringProp name="ThreadGroup.delay">${MAIN_SCRIPT_START_DELAY}</stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
+        <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="SCRIPT_EXECUTION_NUMBER Counter" enabled="true">
+          <stringProp name="CounterConfig.start">1</stringProp>
+          <stringProp name="CounterConfig.end"></stringProp>
+          <stringProp name="CounterConfig.incr">1</stringProp>
+          <stringProp name="CounterConfig.name">SCRIPT_EXECUTION_NUMBER</stringProp>
+          <stringProp name="CounterConfig.format"></stringProp>
+          <boolProp name="CounterConfig.per_user">false</boolProp>
+        </CounterConfig>
+        <hashTree/>
         <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open Main page" enabled="true">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
           <boolProp name="TransactionController.parent">true</boolProp>
@@ -1361,6 +1491,16 @@
           <stringProp name="LoopController.loops">${ADMIN_LOOPS}</stringProp>
         </LoopController>
         <hashTree>
+          <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="ADMIN_SCRIPT Counter" enabled="true">
+            <stringProp name="CounterConfig.start">0</stringProp>
+            <stringProp name="CounterConfig.end"></stringProp>
+            <stringProp name="CounterConfig.incr">1</stringProp>
+            <stringProp name="CounterConfig.name">ADMIN_SCRIPT</stringProp>
+            <stringProp name="CounterConfig.format"></stringProp>
+            <boolProp name="CounterConfig.per_user">true</boolProp>
+            <boolProp name="CounterConfig.reset_on_tg_iteration">true</boolProp>
+          </CounterConfig>
+          <hashTree/>
           <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
             <intProp name="ActionProcessor.action">1</intProp>
             <intProp name="ActionProcessor.target">0</intProp>
@@ -1972,173 +2112,189 @@
             </GaussianRandomTimer>
             <hashTree/>
           </hashTree>
-          <CriticalSectionController guiclass="CriticalSectionControllerGui" testclass="CriticalSectionController" testname="Critical Section Controller" enabled="true">
-            <stringProp name="CriticalSectionController.lockName">global_lock</stringProp>
-          </CriticalSectionController>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open Users page" enabled="true">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+            <boolProp name="TransactionController.parent">true</boolProp>
+          </TransactionController>
           <hashTree>
-            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open Users page" enabled="true">
-              <boolProp name="TransactionController.includeTimers">false</boolProp>
-              <boolProp name="TransactionController.parent">true</boolProp>
-            </TransactionController>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/blog/admin/app/security/users/userView.html-48" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/blog/admin/app/security/users/userView.html</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
             <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/blog/admin/app/security/users/userView.html-48" enabled="true">
-                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
-                  <collectionProp name="Arguments.arguments"/>
-                </elementProp>
-                <stringProp name="HTTPSampler.domain"></stringProp>
-                <stringProp name="HTTPSampler.port"></stringProp>
-                <stringProp name="HTTPSampler.protocol"></stringProp>
-                <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/blog/admin/app/security/users/userView.html</stringProp>
-                <stringProp name="HTTPSampler.method">GET</stringProp>
-                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-                <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              </HTTPSamplerProxy>
-              <hashTree>
-                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                  <collectionProp name="HeaderManager.headers">
-                    <elementProp name="Accept-Language" elementType="Header">
-                      <stringProp name="Header.name">Accept-Language</stringProp>
-                      <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
-                    </elementProp>
-                    <elementProp name="Accept-Encoding" elementType="Header">
-                      <stringProp name="Header.name">Accept-Encoding</stringProp>
-                      <stringProp name="Header.value">gzip, deflate</stringProp>
-                    </elementProp>
-                    <elementProp name="User-Agent" elementType="Header">
-                      <stringProp name="Header.name">User-Agent</stringProp>
-                      <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0</stringProp>
-                    </elementProp>
-                    <elementProp name="Accept" elementType="Header">
-                      <stringProp name="Header.name">Accept</stringProp>
-                      <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
-                    </elementProp>
-                  </collectionProp>
-                </HeaderManager>
-                <hashTree/>
-              </hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/blog/api/users-49" enabled="true">
-                <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
-                  <collectionProp name="Arguments.arguments">
-                    <elementProp name="filter" elementType="HTTPArgument">
-                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                      <stringProp name="Argument.name">filter</stringProp>
-                      <stringProp name="Argument.value">1+%3D%3D+1</stringProp>
-                      <stringProp name="Argument.metadata">=</stringProp>
-                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    </elementProp>
-                    <elementProp name="order" elementType="HTTPArgument">
-                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                      <stringProp name="Argument.name">order</stringProp>
-                      <stringProp name="Argument.value">UserName</stringProp>
-                      <stringProp name="Argument.metadata">=</stringProp>
-                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    </elementProp>
-                    <elementProp name="skip" elementType="HTTPArgument">
-                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                      <stringProp name="Argument.name">skip</stringProp>
-                      <stringProp name="Argument.value">0</stringProp>
-                      <stringProp name="Argument.metadata">=</stringProp>
-                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    </elementProp>
-                    <elementProp name="take" elementType="HTTPArgument">
-                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                      <stringProp name="Argument.name">take</stringProp>
-                      <stringProp name="Argument.value">0</stringProp>
-                      <stringProp name="Argument.metadata">=</stringProp>
-                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    </elementProp>
-                  </collectionProp>
-                </elementProp>
-                <stringProp name="HTTPSampler.domain"></stringProp>
-                <stringProp name="HTTPSampler.port"></stringProp>
-                <stringProp name="HTTPSampler.protocol"></stringProp>
-                <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-                <stringProp name="HTTPSampler.path">/blog/api/users</stringProp>
-                <stringProp name="HTTPSampler.method">GET</stringProp>
-                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-                <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-                <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-                <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                <stringProp name="HTTPSampler.response_timeout"></stringProp>
-              </HTTPSamplerProxy>
-              <hashTree>
-                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-                  <collectionProp name="HeaderManager.headers">
-                    <elementProp name="Accept-Language" elementType="Header">
-                      <stringProp name="Header.name">Accept-Language</stringProp>
-                      <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
-                    </elementProp>
-                    <elementProp name="Accept-Encoding" elementType="Header">
-                      <stringProp name="Header.name">Accept-Encoding</stringProp>
-                      <stringProp name="Header.value">gzip, deflate</stringProp>
-                    </elementProp>
-                    <elementProp name="User-Agent" elementType="Header">
-                      <stringProp name="Header.name">User-Agent</stringProp>
-                      <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0</stringProp>
-                    </elementProp>
-                    <elementProp name="Accept" elementType="Header">
-                      <stringProp name="Header.name">Accept</stringProp>
-                      <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
-                    </elementProp>
-                    <elementProp name="x-blog-instance" elementType="Header">
-                      <stringProp name="Header.name">x-blog-instance</stringProp>
-                      <stringProp name="Header.value">96d5b379-7e1d-4dac-a6ba-1e50db561b04</stringProp>
-                    </elementProp>
-                  </collectionProp>
-                </HeaderManager>
-                <hashTree/>
-                <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="USERS_LIST Extractor" enabled="true">
-                  <stringProp name="JSONPostProcessor.referenceNames">ALL_USERS_LIST</stringProp>
-                  <stringProp name="JSONPostProcessor.jsonPathExprs">$.[*]</stringProp>
-                  <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
-                  <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
-                </JSONPostProcessor>
-                <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="USERS_NUMBERS Extractor" enabled="true">
-                  <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                  <stringProp name="RegexExtractor.refname">USERS_NUMBERS</stringProp>
-                  <stringProp name="RegexExtractor.regex">&quot;UserName&quot;:&quot;User_(\d{2,4})&quot;</stringProp>
-                  <stringProp name="RegexExtractor.template">$1$</stringProp>
-                  <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-                  <stringProp name="RegexExtractor.match_number">-1</stringProp>
-                </RegexExtractor>
-                <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="DELETE_USER_NUMBER Extractor" enabled="true">
-                  <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                  <stringProp name="RegexExtractor.refname">DELETE_USER_NUMBER</stringProp>
-                  <stringProp name="RegexExtractor.regex">&quot;UserName&quot;:&quot;User_(\d{2,4})&quot;</stringProp>
-                  <stringProp name="RegexExtractor.template">$1$</stringProp>
-                  <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
-                  <stringProp name="RegexExtractor.match_number">0</stringProp>
-                </RegexExtractor>
-                <hashTree/>
-              </hashTree>
-            </hashTree>
-            <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
-              <intProp name="ActionProcessor.action">1</intProp>
-              <intProp name="ActionProcessor.target">0</intProp>
-              <stringProp name="ActionProcessor.duration">0</stringProp>
-            </TestAction>
-            <hashTree>
-              <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
-                <stringProp name="ConstantTimer.delay">3000</stringProp>
-                <stringProp name="RandomTimer.range">1000</stringProp>
-              </GaussianRandomTimer>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
               <hashTree/>
             </hashTree>
-            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Less than 10 users" enabled="true">
-              <stringProp name="IfController.condition">${__jexl3(${ALL_USERS_LIST_matchNr}&lt;=10,)}</stringProp>
-              <boolProp name="IfController.evaluateAll">false</boolProp>
-              <boolProp name="IfController.useExpression">true</boolProp>
-            </IfController>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/blog/api/users-49" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="filter" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">filter</stringProp>
+                    <stringProp name="Argument.value">1+%3D%3D+1</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="order" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">order</stringProp>
+                    <stringProp name="Argument.value">UserName</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="skip" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">skip</stringProp>
+                    <stringProp name="Argument.value">0</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="take" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">take</stringProp>
+                    <stringProp name="Argument.value">0</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/blog/api/users</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.5</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:100.0) Gecko/20100101 Firefox/100.0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">application/json, text/plain, */*</stringProp>
+                  </elementProp>
+                  <elementProp name="x-blog-instance" elementType="Header">
+                    <stringProp name="Header.name">x-blog-instance</stringProp>
+                    <stringProp name="Header.value">96d5b379-7e1d-4dac-a6ba-1e50db561b04</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="USERS_LIST Extractor" enabled="true">
+                <stringProp name="JSONPostProcessor.referenceNames">ALL_USERS_LIST</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.[*]</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers">-1</stringProp>
+                <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="USERS_NUMBERS Extractor" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">USERS_NUMBERS</stringProp>
+                <stringProp name="RegexExtractor.regex">&quot;UserName&quot;:&quot;User_(\d{2,4})&quot;</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                <stringProp name="RegexExtractor.match_number">-1</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="DELETE_USER_NUMBER Extractor" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">DELETE_USER_NUMBER</stringProp>
+                <stringProp name="RegexExtractor.regex">&quot;UserName&quot;:&quot;User_(\d{2,4})&quot;</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
+            <intProp name="ActionProcessor.action">1</intProp>
+            <intProp name="ActionProcessor.target">0</intProp>
+            <stringProp name="ActionProcessor.duration">0</stringProp>
+          </TestAction>
+          <hashTree>
+            <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
+              <stringProp name="ConstantTimer.delay">3000</stringProp>
+              <stringProp name="RandomTimer.range">1000</stringProp>
+            </GaussianRandomTimer>
+            <hashTree/>
+          </hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Less than 10 users" enabled="true">
+            <stringProp name="IfController.condition">${__jexl3(${ALL_USERS_LIST_matchNr}&lt;=10,)}</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+            <boolProp name="IfController.useExpression">true</boolProp>
+          </IfController>
+          <hashTree>
+            <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Create User" enabled="true">
+              <collectionProp name="ModuleController.node_path">
+                <stringProp name="764597751">Test Plan</stringProp>
+                <stringProp name="764597751">Test Plan</stringProp>
+                <stringProp name="170071582">Test Fragment</stringProp>
+                <stringProp name="1115198575">Create User</stringProp>
+              </collectionProp>
+            </ModuleController>
+            <hashTree/>
+          </hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Between 10 and 20 users" enabled="true">
+            <stringProp name="IfController.condition">${__jexl3(${ALL_USERS_LIST_matchNr}&gt;10 &amp;&amp; ${ALL_USERS_LIST_matchNr}&lt;=20,)}</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+            <boolProp name="IfController.useExpression">true</boolProp>
+          </IfController>
+          <hashTree>
+            <RandomController guiclass="RandomControlGui" testclass="RandomController" testname="Create or Delete User" enabled="true">
+              <intProp name="InterleaveControl.style">1</intProp>
+            </RandomController>
             <hashTree>
               <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Create User" enabled="true">
                 <collectionProp name="ModuleController.node_path">
@@ -2149,43 +2305,6 @@
                 </collectionProp>
               </ModuleController>
               <hashTree/>
-            </hashTree>
-            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Between 10 and 20 users" enabled="true">
-              <stringProp name="IfController.condition">${__jexl3(${ALL_USERS_LIST_matchNr}&gt;10 &amp;&amp; ${ALL_USERS_LIST_matchNr}&lt;=20,)}</stringProp>
-              <boolProp name="IfController.evaluateAll">false</boolProp>
-              <boolProp name="IfController.useExpression">true</boolProp>
-            </IfController>
-            <hashTree>
-              <RandomController guiclass="RandomControlGui" testclass="RandomController" testname="Create or Delete User" enabled="true">
-                <intProp name="InterleaveControl.style">1</intProp>
-              </RandomController>
-              <hashTree>
-                <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Create User" enabled="true">
-                  <collectionProp name="ModuleController.node_path">
-                    <stringProp name="764597751">Test Plan</stringProp>
-                    <stringProp name="764597751">Test Plan</stringProp>
-                    <stringProp name="170071582">Test Fragment</stringProp>
-                    <stringProp name="1115198575">Create User</stringProp>
-                  </collectionProp>
-                </ModuleController>
-                <hashTree/>
-                <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Delete User" enabled="true">
-                  <collectionProp name="ModuleController.node_path">
-                    <stringProp name="764597751">Test Plan</stringProp>
-                    <stringProp name="764597751">Test Plan</stringProp>
-                    <stringProp name="170071582">Test Fragment</stringProp>
-                    <stringProp name="486950176">Delete User</stringProp>
-                  </collectionProp>
-                </ModuleController>
-                <hashTree/>
-              </hashTree>
-            </hashTree>
-            <IfController guiclass="IfControllerPanel" testclass="IfController" testname="More than 20 users" enabled="true">
-              <stringProp name="IfController.condition">${__jexl3(${ALL_USERS_LIST_matchNr}&gt;20,)}</stringProp>
-              <boolProp name="IfController.evaluateAll">false</boolProp>
-              <boolProp name="IfController.useExpression">true</boolProp>
-            </IfController>
-            <hashTree>
               <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Delete User" enabled="true">
                 <collectionProp name="ModuleController.node_path">
                   <stringProp name="764597751">Test Plan</stringProp>
@@ -2196,6 +2315,22 @@
               </ModuleController>
               <hashTree/>
             </hashTree>
+          </hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="More than 20 users" enabled="true">
+            <stringProp name="IfController.condition">${__jexl3(${ALL_USERS_LIST_matchNr}&gt;20,)}</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+            <boolProp name="IfController.useExpression">true</boolProp>
+          </IfController>
+          <hashTree>
+            <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Delete User" enabled="true">
+              <collectionProp name="ModuleController.node_path">
+                <stringProp name="764597751">Test Plan</stringProp>
+                <stringProp name="764597751">Test Plan</stringProp>
+                <stringProp name="170071582">Test Fragment</stringProp>
+                <stringProp name="486950176">Delete User</stringProp>
+              </collectionProp>
+            </ModuleController>
+            <hashTree/>
           </hashTree>
         </hashTree>
         <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
@@ -2457,7 +2592,7 @@
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&quot;UserName&quot;:&quot;User_${CREATE_USER_NUMBER}&quot;,&quot;Email&quot;:&quot;user${CREATE_USER_NUMBER}@randomMail.com&quot;,&quot;Password&quot;:&quot;user${CREATE_USER_NUMBER}&quot;,&quot;roles&quot;:[{&quot;IsChecked&quot;:true,&quot;RoleName&quot;:&quot;Administrators&quot;,&quot;IsSystemRole&quot;:true},{&quot;IsChecked&quot;:false,&quot;RoleName&quot;:&quot;Editors&quot;,&quot;IsSystemRole&quot;:true}]}</stringProp>
+                  <stringProp name="Argument.value">{&quot;UserName&quot;:&quot;User_${ADMIN_SCRIPT}${SCRIPT_EXECUTION_NUMBER}&quot;,&quot;Email&quot;:&quot;user${ADMIN_SCRIPT}${SCRIPT_EXECUTION_NUMBER}@randomMail.com&quot;,&quot;Password&quot;:&quot;user${ADMIN_SCRIPT}${SCRIPT_EXECUTION_NUMBER}&quot;,&quot;roles&quot;:[{&quot;IsChecked&quot;:true,&quot;RoleName&quot;:&quot;Administrators&quot;,&quot;IsSystemRole&quot;:true},{&quot;IsChecked&quot;:false,&quot;RoleName&quot;:&quot;Editors&quot;,&quot;IsSystemRole&quot;:true}]}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
@@ -2510,7 +2645,7 @@
               </collectionProp>
             </HeaderManager>
             <hashTree/>
-            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="CREATE_USER_NUMBER generator" enabled="true">
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="CREATE_USER_NUMBER generator" enabled="false">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>

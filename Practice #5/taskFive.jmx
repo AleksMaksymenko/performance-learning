@@ -1225,7 +1225,7 @@
             <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="RANDOM_POST_PATH Extractor" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">RANDOM_POST_PATH</stringProp>
-              <stringProp name="RegexExtractor.regex">location\.href=&apos;(\/blog\/post\/post-\d{1,4})\?deletepost=.{8}-.{4}-.{4}-.{4}-.{12}&apos;&quot;</stringProp>
+              <stringProp name="RegexExtractor.regex">location\.href=&apos;(\/blog\/post\/post-\d{1,4})\?deletepost=.*</stringProp>
               <stringProp name="RegexExtractor.template">$1$</stringProp>
               <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
               <stringProp name="RegexExtractor.match_number">0</stringProp>

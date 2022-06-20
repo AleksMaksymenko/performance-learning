@@ -1498,11 +1498,16 @@ vars.put(&quot;RANDOM_POST_PATH&quot;,random_uri.getPath().toString())</stringPr
       <hashTree/>
       <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="Test Fragment" enabled="false"/>
       <hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Open Random Page" enabled="true">
-          <stringProp name="IfController.condition">${__javaScript(Math.round(Math.random())==1 ? &quot;true&quot; : &quot;false&quot;;)}</stringProp>
-          <boolProp name="IfController.evaluateAll">false</boolProp>
-          <boolProp name="IfController.useExpression">true</boolProp>
-        </IfController>
+        <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Open Random Page" enabled="true">
+          <intProp name="ThroughputController.style">1</intProp>
+          <boolProp name="ThroughputController.perThread">false</boolProp>
+          <intProp name="ThroughputController.maxThroughput">1</intProp>
+          <FloatProperty>
+            <name>ThroughputController.percentThroughput</name>
+            <value>50.0</value>
+            <savedValue>0.0</savedValue>
+          </FloatProperty>
+        </ThroughputController>
         <hashTree>
           <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
             <intProp name="ActionProcessor.action">1</intProp>
@@ -1807,11 +1812,16 @@ SampleResult.setIgnore()</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="Leave Comment or Not" enabled="true">
-            <stringProp name="IfController.condition">${__javaScript(Math.random()&lt;=0.2 ? &quot;true&quot; : &quot;false&quot;,)}</stringProp>
-            <boolProp name="IfController.evaluateAll">false</boolProp>
-            <boolProp name="IfController.useExpression">true</boolProp>
-          </IfController>
+          <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Leave Comment or Not" enabled="true">
+            <intProp name="ThroughputController.style">1</intProp>
+            <boolProp name="ThroughputController.perThread">false</boolProp>
+            <intProp name="ThroughputController.maxThroughput">1</intProp>
+            <FloatProperty>
+              <name>ThroughputController.percentThroughput</name>
+              <value>20.0</value>
+              <savedValue>0.0</savedValue>
+            </FloatProperty>
+          </ThroughputController>
           <hashTree>
             <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control Action" enabled="true">
               <intProp name="ActionProcessor.action">1</intProp>

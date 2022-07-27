@@ -67,7 +67,7 @@
           </elementProp>
           <elementProp name="NUMBER_OF_POSTS" elementType="Argument">
             <stringProp name="Argument.name">NUMBER_OF_POSTS</stringProp>
-            <stringProp name="Argument.value">100</stringProp>
+            <stringProp name="Argument.value">1000</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="NUMBER_OF_PREDEFINED_DATES" elementType="Argument">
@@ -82,7 +82,7 @@
           </elementProp>
           <elementProp name="END_DATE" elementType="Argument">
             <stringProp name="Argument.name">END_DATE</stringProp>
-            <stringProp name="Argument.value">2022-05-15</stringProp>
+            <stringProp name="Argument.value">2022-09-15</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>

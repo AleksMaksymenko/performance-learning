@@ -67,12 +67,12 @@
           </elementProp>
           <elementProp name="NUMBER_OF_POSTS" elementType="Argument">
             <stringProp name="Argument.name">NUMBER_OF_POSTS</stringProp>
-            <stringProp name="Argument.value">3000</stringProp>
+            <stringProp name="Argument.value">1000</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="NUMBER_OF_PREDEFINED_DATES" elementType="Argument">
             <stringProp name="Argument.name">NUMBER_OF_PREDEFINED_DATES</stringProp>
-            <stringProp name="Argument.value">100</stringProp>
+            <stringProp name="Argument.value">0</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="START_DATE" elementType="Argument">
@@ -331,8 +331,8 @@
           </LoopController>
           <hashTree>
             <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
-              <stringProp name="CounterConfig.start">2001</stringProp>
-              <stringProp name="CounterConfig.end">5000</stringProp>
+              <stringProp name="CounterConfig.start">1</stringProp>
+              <stringProp name="CounterConfig.end">1000</stringProp>
               <stringProp name="CounterConfig.incr">1</stringProp>
               <stringProp name="CounterConfig.name">ITERATION</stringProp>
               <stringProp name="CounterConfig.format"></stringProp>
@@ -351,7 +351,7 @@
               <stringProp name="shareMode">shareMode.all</stringProp>
             </CSVDataSet>
             <hashTree/>
-            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Text Post Generation" enabled="true">
+            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Text Post Generation" enabled="false">
               <intProp name="ThroughputController.style">0</intProp>
               <boolProp name="ThroughputController.perThread">false</boolProp>
               <stringProp name="ThroughputController.maxThroughput">${NUMBER_OF_POSTS}</stringProp>
@@ -510,7 +510,7 @@ if (i &lt;= numberOfPredefinedDates) {
                 <hashTree/>
               </hashTree>
             </hashTree>
-            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Media Post Generation" enabled="false">
+            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Media Post Generation" enabled="true">
               <intProp name="ThroughputController.style">0</intProp>
               <boolProp name="ThroughputController.perThread">false</boolProp>
               <stringProp name="ThroughputController.maxThroughput">${NUMBER_OF_POSTS}</stringProp>
@@ -521,13 +521,24 @@ if (i &lt;= numberOfPredefinedDates) {
               </FloatProperty>
             </ThroughputController>
             <hashTree>
+              <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="PICTURE_NUMBER generator" enabled="true">
+                <stringProp name="cacheKey">true</stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="script">allValues = [0, 1, 2, 3] as int[]
+int randomNumber = org.apache.commons.lang3.RandomUtils.nextInt(0, allValues.length)
+vars.put(&quot;PICTURE_NUMBER&quot;, allValues[randomNumber].toString())
+SampleResult.setIgnore()</stringProp>
+                <stringProp name="scriptLanguage">groovy</stringProp>
+              </JSR223Sampler>
+              <hashTree/>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/blog/api/posts-45" enabled="true">
                 <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
                   <collectionProp name="Arguments.arguments">
                     <elementProp name="" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                      <stringProp name="Argument.value">{&quot;Id&quot;:&quot;&quot;,&quot;Title&quot;:&quot;MediaPost-${ITERATION}&quot;,&quot;Author&quot;:&quot;${USERNAME}&quot;,&quot;Content&quot;:&quot;&lt;p&gt;&lt;img src=\&quot;/blog/image.axd?picture=/yellow_cab_1_562514.jpg\&quot; alt=\&quot;\&quot; /&gt;&lt;/p&gt;&quot;,&quot;DateCreated&quot;:&quot;${DATE_OF_POST}&quot;,&quot;Slug&quot;:&quot;mediapost-${ITERATION}&quot;,&quot;Categories&quot;:[],&quot;Tags&quot;:[],&quot;Comments&quot;:&quot;&quot;,&quot;HasCommentsEnabled&quot;:true,&quot;IsPublished&quot;:true}</stringProp>
+                      <stringProp name="Argument.value">{&quot;Id&quot;:&quot;&quot;,&quot;Title&quot;:&quot;Media-${ITERATION}&quot;,&quot;Author&quot;:&quot;${USERNAME}&quot;,&quot;Content&quot;:&quot;&lt;p&gt;&lt;img src=\&quot;/blog/image.axd?picture=/picture${__Random(1,4,)}.jpg\&quot; alt=\&quot;\&quot; /&gt;&lt;/p&gt;&quot;,&quot;DateCreated&quot;:&quot;${DATE_OF_POST}&quot;,&quot;Slug&quot;:&quot;media-${ITERATION}&quot;,&quot;Categories&quot;:[],&quot;Tags&quot;:[],&quot;Comments&quot;:&quot;&quot;,&quot;HasCommentsEnabled&quot;:true,&quot;IsPublished&quot;:true}</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                     </elementProp>
                   </collectionProp>

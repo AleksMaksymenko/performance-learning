@@ -2677,7 +2677,7 @@ SampleResult.setIgnore()</stringProp>
                 <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="FIRST_POST_PATH Extractor" enabled="true">
                   <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                   <stringProp name="RegexExtractor.refname">FIRST_POST_PATH</stringProp>
-                  <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\/post\/.+)&quot;&gt;.+&lt;\/a&gt;</stringProp>
+                  <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\/post\/post-.+)&quot;&gt;.+&lt;\/a&gt;</stringProp>
                   <stringProp name="RegexExtractor.template">$1$</stringProp>
                   <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
                   <stringProp name="RegexExtractor.match_number">1</stringProp>
@@ -2686,7 +2686,7 @@ SampleResult.setIgnore()</stringProp>
                 <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="RANDOM_POST_PATH Extractor" enabled="true">
                   <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                   <stringProp name="RegexExtractor.refname">RANDOM_POST_PATH</stringProp>
-                  <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\/post\/.+)&quot;&gt;.+&lt;\/a&gt;</stringProp>
+                  <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\/post\/post-.+)&quot;&gt;.+&lt;\/a&gt;</stringProp>
                   <stringProp name="RegexExtractor.template">$1$</stringProp>
                   <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
                   <stringProp name="RegexExtractor.match_number">0</stringProp>
@@ -2782,7 +2782,7 @@ SampleResult.setIgnore()</stringProp>
                 <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="FIRST_POST_PATH Extractor" enabled="true">
                   <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                   <stringProp name="RegexExtractor.refname">FIRST_POST_PATH</stringProp>
-                  <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\/post\/.+)&quot;&gt;.+&lt;\/a&gt;</stringProp>
+                  <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\/post\/post-.+)&quot;&gt;.+&lt;\/a&gt;</stringProp>
                   <stringProp name="RegexExtractor.template">$1$</stringProp>
                   <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
                   <stringProp name="RegexExtractor.match_number">1</stringProp>
@@ -2791,7 +2791,7 @@ SampleResult.setIgnore()</stringProp>
                 <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="RANDOM_POST_PATH Extractor" enabled="true">
                   <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                   <stringProp name="RegexExtractor.refname">RANDOM_POST_PATH</stringProp>
-                  <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\/post\/.+)&quot;&gt;.+&lt;\/a&gt;</stringProp>
+                  <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\/post\/post-.+)&quot;&gt;.+&lt;\/a&gt;</stringProp>
                   <stringProp name="RegexExtractor.template">$1$</stringProp>
                   <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
                   <stringProp name="RegexExtractor.match_number">0</stringProp>
@@ -2887,7 +2887,7 @@ SampleResult.setIgnore()</stringProp>
                 <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="FIRST_POST_PATH Extractor" enabled="true">
                   <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                   <stringProp name="RegexExtractor.refname">FIRST_POST_PATH</stringProp>
-                  <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\/post\/.+)&quot;&gt;.+&lt;\/a&gt;</stringProp>
+                  <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\/post\/post-.+)&quot;&gt;.+&lt;\/a&gt;</stringProp>
                   <stringProp name="RegexExtractor.template">$1$</stringProp>
                   <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
                   <stringProp name="RegexExtractor.match_number">1</stringProp>
@@ -2896,7 +2896,7 @@ SampleResult.setIgnore()</stringProp>
                 <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="RANDOM_POST_PATH Extractor" enabled="true">
                   <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                   <stringProp name="RegexExtractor.refname">RANDOM_POST_PATH</stringProp>
-                  <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\/post\/.+)&quot;&gt;.+&lt;\/a&gt;</stringProp>
+                  <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\/post\/post-.+)&quot;&gt;.+&lt;\/a&gt;</stringProp>
                   <stringProp name="RegexExtractor.template">$1$</stringProp>
                   <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
                   <stringProp name="RegexExtractor.match_number">0</stringProp>

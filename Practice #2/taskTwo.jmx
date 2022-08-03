@@ -72,7 +72,7 @@
           </elementProp>
           <elementProp name="NUMBER_OF_PREDEFINED_DATES" elementType="Argument">
             <stringProp name="Argument.name">NUMBER_OF_PREDEFINED_DATES</stringProp>
-            <stringProp name="Argument.value">0</stringProp>
+            <stringProp name="Argument.value">100</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="START_DATE" elementType="Argument">
@@ -331,8 +331,8 @@
           </LoopController>
           <hashTree>
             <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
-              <stringProp name="CounterConfig.start">1</stringProp>
-              <stringProp name="CounterConfig.end">1000</stringProp>
+              <stringProp name="CounterConfig.start">1001</stringProp>
+              <stringProp name="CounterConfig.end"></stringProp>
               <stringProp name="CounterConfig.incr">1</stringProp>
               <stringProp name="CounterConfig.name">ITERATION</stringProp>
               <stringProp name="CounterConfig.format"></stringProp>
@@ -351,7 +351,7 @@
               <stringProp name="shareMode">shareMode.all</stringProp>
             </CSVDataSet>
             <hashTree/>
-            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Text Post Generation" enabled="false">
+            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Text Post Generation" enabled="true">
               <intProp name="ThroughputController.style">0</intProp>
               <boolProp name="ThroughputController.perThread">false</boolProp>
               <stringProp name="ThroughputController.maxThroughput">${NUMBER_OF_POSTS}</stringProp>
@@ -441,7 +441,7 @@ if (i &lt;= numberOfPredefinedDates) {
                 </JSR223PreProcessor>
                 <hashTree/>
                 <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                  <stringProp name="ConstantTimer.delay">500</stringProp>
+                  <stringProp name="ConstantTimer.delay">300</stringProp>
                 </ConstantTimer>
                 <hashTree/>
               </hashTree>
@@ -510,7 +510,7 @@ if (i &lt;= numberOfPredefinedDates) {
                 <hashTree/>
               </hashTree>
             </hashTree>
-            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Media Post Generation" enabled="true">
+            <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Media Post Generation" enabled="false">
               <intProp name="ThroughputController.style">0</intProp>
               <boolProp name="ThroughputController.perThread">false</boolProp>
               <stringProp name="ThroughputController.maxThroughput">${NUMBER_OF_POSTS}</stringProp>

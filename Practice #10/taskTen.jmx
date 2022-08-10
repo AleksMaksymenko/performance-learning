@@ -69,7 +69,7 @@
           </elementProp>
           <elementProp name="DURATION" elementType="Argument">
             <stringProp name="Argument.name">DURATION</stringProp>
-            <stringProp name="Argument.value">${__P(DURATION, 600)}</stringProp>
+            <stringProp name="Argument.value">${__P(DURATION, 36000)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="LOOP_COUNT" elementType="Argument">
@@ -89,7 +89,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="ADMIN_USERS" elementType="Argument">
             <stringProp name="Argument.name">ADMIN_USERS</stringProp>
-            <stringProp name="Argument.value">${__P(ADMIN_USERS, 2)}</stringProp>
+            <stringProp name="Argument.value">${__P(ADMIN_USERS, 1)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="ADMIN_RUMPUP" elementType="Argument">
@@ -109,7 +109,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="ANONYMOUS_USERS" elementType="Argument">
             <stringProp name="Argument.name">ANONYMOUS_USERS</stringProp>
-            <stringProp name="Argument.value">${__P(ANONYMOUS_USERS, 60)}</stringProp>
+            <stringProp name="Argument.value">${__P(ANONYMOUS_USERS, 25)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="ANONYMOUS_RUMPUP" elementType="Argument">
@@ -129,7 +129,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="EDITOR_USERS" elementType="Argument">
             <stringProp name="Argument.name">EDITOR_USERS</stringProp>
-            <stringProp name="Argument.value">${__P(EDITOR_USERS, 8)}</stringProp>
+            <stringProp name="Argument.value">${__P(EDITOR_USERS, 4)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="EDITOR_RUMPUP" elementType="Argument">
